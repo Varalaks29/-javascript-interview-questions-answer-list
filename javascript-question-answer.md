@@ -1,12 +1,5 @@
 # JavaScript Interview Questions
 
-*Click <img src="assets/star.png" width="18" height="18" align="absmiddle" title="Star" /> if you like the project. Pull Request are highly appreciated.*
-
-## Table of Contents
-
-* *[ES6 Interview Questions and Answers](es6-questions.md)*
-* *[Programming in JavaScript](javascript-programs.md)*
-
 <br/>
 
 |Sl.No| Questions                                                                         |
