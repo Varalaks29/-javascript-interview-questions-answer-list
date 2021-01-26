@@ -1,20 +1,383 @@
 ## Programming in JavaScript
 
-### Q. How to check if object is empty or not in javaScript?
+### Q1. How to check if object is empty or not in javaScript?
 
 ```javascript
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 ```
+---
 
-### Q. JavaScript Regular Expression to validate Email
+### Q2. What is the output?
 
 ```javascript
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () => 2 * Math.PI * this.radius,
+};
+
+console.log(shape.diameter());
+console.log(shape.perimeter());
+```
+
+- A: `20` and `62.83185307179586`
+- B: `20` and `NaN`
+- C: `20` and `63`
+- D: `NaN` and `63`
+
+**Answer: B**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+
+Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
+
+With arrow functions, the `this` keyword refers to its current surrounding scope, unlike regular functions! This means that when we call `perimeter`, it doesn't refer to the shape object, but to its surrounding scope (window for example).
+
+There is no value `radius` on that object, which returns `NaN`.
+
+</p>
+</details>
+
+---
+
+### Q3. What will be the output of the following code?
+
+```javascript
+var output = (function(x) {
+  delete x;
+  return x;
+})(0);
+
+console.log(output);
+```
+**Answer: 0**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `0` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **local variable**. `delete` operator doesn't affect local variables.
+</p>
+</details>
+
+---
+
+### Q4. What will be the output of the following code?
+
+```javascript
+var x = 1;
+var output = (function () {
+  delete x;
+  return x;
+})();
+
+console.log(output);
+```
+**Answer: 0**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `1` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **global variable** of type `number`.
+</p>
+</details>
+
+---
+
+### Q5. What will be the output of the following code?
+
+```javascript
+var x = { foo : 1};
+var output = (function() {
+  delete x.foo;
+  return x.foo;
+})();
+
+console.log(output);
+```
+**Answer: undefined**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `undefined` as output. `delete` operator is used to delete a property from an object. Here `x` is an object which has foo as a property and from a self-invoking function, we are deleting the `foo` property of object `x` and after deletion, we are trying to reference deleted property `foo` which result `undefined`.
+</p>
+</details>
+
+---
+
+### Q6. What will be the output of the following code?
+
+```javascript
+var Employee = {
+  company: "xyz",
+};
+var emp1 = Object.create(Employee);
+delete emp1.company;
+console.log(emp1.company);
+```
+**Answer: xyz**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `xyz` as output. Here `emp1` object got company as **prototype** property. delete operator doesn't delete prototype property.
+
+`emp1` object doesn't have **company** as its own property. you can test it `console.log(emp1.hasOwnProperty('company')); //output : false` However, we can delete company property directly from `Employee` object using `delete Employee.company` or we can also delete from `emp1` object using `__proto__` property `delete emp1.__proto__.company`.
+</p>
+</details>
+
+---
+
+### Q7. What is `undefined x 1` in JavaScript
+
+```javascript
+var trees = ["redwood", "bay", "cedar", "oak", "maple"];
+delete trees[3];
+```
+
+<details><summary><b>Explanation</b></summary>
+<p>
+ - When you run the code above and do `console.log(trees);` in chrome developer console then you will get `["redwood", "bay", "cedar", undefined × 1, "maple"]`.
+ - In the recent versions of Chrome you will see the word `empty` of `undefined x 1`.
+ - When you run the same code in Firefox browser console then you will get `["redwood", "bay", "cedar", undefined, "maple"]`
+  
+Clearly we can see that Chrome has its own way of displaying uninitialized index in arrays. However when you check `trees[3] === undefined` in any browser you will get similar output as `true`.
+
+**Note:** Please remember that you need not check for the uninitialized index of the array in  `trees[3] === 'undefined × 1'` it will give an error because `'undefined × 1'` this is just way of displaying an uninitialized index of an array in chrome.
+</p>
+</details>
+
+---
+
+### Q8. What will be the output of the following code?
+
+```javascript
+var trees = ["xyz", "xxxx", "test", "ryan", "apple"];
+delete trees[3];
+console.log(trees.length);
+```
+**Answer: 5**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `5` as output. When we used `delete` operator for deleting an array element then, the array length is not affected by this. This holds even if you deleted all elements of an array using `delete` operator.
+
+So when delete operator removes an array element that deleted element is no longer present in the array. In place of value at deleted index `undefined x 1` in **chrome** and `undefined` is placed at the index. If you do `console.log(trees)` output `["xyz", "xxxx", "test", undefined × 1, "apple"]` in Chrome and in Firefox `["xyz", "xxxx", "test", undefined, "apple"]`.
+</p>
+</details>
+ 
+ ---
+
+### Q9. What will be the output of the following code?
+
+```javascript
+var bar = true;
+console.log(bar + 0);
+console.log(bar + "xyz");
+console.log(bar + true);
+console.log(bar + false);
+```
+**Answer: 1,"truexyz, 2, 1**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output `1, "truexyz", 2, 1` as output. Here's a general guideline for the plus operator:
+
+- Number + Number -> Addition
+- Boolean + Number -> Addition
+- Boolean + Boolean -> Addition
+- Number + String -> Concatenation
+- String + Boolean -> Concatenation
+- String + String -> Concatenation
+</p>
+</details>
+
+---
+ 
+### Q10. What will be the output of the following code?
+
+```javascript
+var z = 1,
+  y = (z = typeof y);
+console.log(y);
+```
+**Answer: undefined**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will print string `"undefined"` as output. According to associativity rule operator with the same precedence are processed based on their associativity property of operator. Here associativity of the assignment operator is `Right to Left` so first `typeof y` will evaluate first which is string `"undefined"` and assigned to `z` and then `y` would be assigned the value of z. The overall sequence will look like that:
+
+```javascript
+var z;
+z = 1;
+var y;
+z = typeof y;
+y = z;
+```
+</p>
+</details>
+
+---
+
+### Q11. What will be the output of the following code?
+
+```javascript
+// NFE (Named Function Expression)
+var foo = function bar() {
+  return 12;
+};
+typeof bar();
+```
+**Answer: Reference Error**
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The output will be `Reference Error`. To fix the bug we can try to rewrite the code a little bit:
+
+**Sample 1**
+
+```javascript
+var bar = function () {
+  return 12;
+};
+typeof bar();
+```
+
+or
+
+**Sample 2**
+
+```javascript
+function bar() {
+  return 12;
+}
+typeof bar();
+```
+
+The function definition can have only one reference variable as a function name, In **sample 1** `bar` is reference variable which is pointing to `anonymous function` and in **sample 2** we have function statement and `bar` is the function name.
+
+```javascript
+var foo = function bar() {
+  // foo is visible here
+  // bar is visible here
+  console.log(typeof bar()); // Works here :)
+};
+// foo is visible here
+// bar is undefined here
+```
+</p>
+</dietails>
+
+---
+
+### Q12. What is the output of the following?
+
+```javascript
+bar();
+(function abc() {
+  console.log("something");
+})();
+function bar() {
+  console.log("bar got called");
+}
+```
+
+**Answer: **
+```
+bar got called
+something
+```
+<details><summary><b>Explanation</b></summary>
+<p>
+Since the function is called first and defined during parse time the JS engine will try to find any possible parse time definitions and start the execution loop which will mean function is called first even if the definition is post another function.
+<p>
+</details>
+
+---
+
+### Q13. What is the difference between declaring a function in the formats listed below?
+
+```javascript
+var foo = function() {
+  // Some code
+}
+```
+
+```javascript
+function bar () {
+  // Some code
+}
+```
+<details><summary><b>Explanation</b></summary>
+<p>
+The main difference is that function `foo` is defined at `run-time` and is called a function expression, whereas function `bar` is defined at `parse time` and is called a function statement. To understand it better, let's take a look at the code below :
+
+```javascript
+// Run-Time function declaration
+  foo(); // Call foo function here, It will give an error
+  var foo = function() {
+    console.log("Hi I am inside Foo");
+  };
+```
+
+```javascript
+// Parse-Time function declaration
+bar(); // Call bar function here, It will not give an Error
+function bar() {
+  console.log("Hi I am inside Foo");
+}
+```
+</p>
+</details>
+
+---
+
+### Q14. What will be the output of the following code?
+
+```javascript
+var salary = "1000$";
+
+(function () {
+  console.log("Original salary was " + salary);
+
+  var salary = "5000$";
+
+  console.log("My New Salary " + salary);
+})();
+```
+**Answer: undefined, 5000$ **
+
+<details><summary><b>Explanation</b></summary>
+<p>
+The code above will output: `undefined, 5000$` because of hoisting. In the code presented above, you might be expecting `salary` to retain it values from outer scope until the point that `salary` was re-declared in the inner scope. But due to `hoisting` salary value was `undefined` instead. To understand it better have a look of the following code, here `salary` variable is hoisted and declared at the top in function scope. When we print its value using `console.log` the result is `undefined`. Afterwards the variable is redeclared and the new value `"5000$"` is assigned to it.
+
+```javascript
+var salary = "1000$";
+
+(function () {
+  var salary = undefined;
+  console.log("Original salary was " + salary);
+
+  salary = "5000$";
+
+  console.log("My New Salary " + salary);
+})();
+```
+</p>
+</details>
+
+---
+
+### Q15. JavaScript Regular Expression to validate Email and to test password strength
+
+For Email:
+
+```javascript 
 var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 ```
 
-### Q. Use RegEx to test password strength in JavaScript?
+For Password:
 
 ```javascript
 var newPassword = "Pq5*@a{J";
@@ -29,11 +392,9 @@ if (!regularExpression.test(newPassword)) {
 }
 ```
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. How to compare objects ES6?
+### Q16. How to compare objects ES6?
 
 Example 01:
 
@@ -80,12 +441,9 @@ const two = {
 // Using JavaScript
 JSON.stringify(one) === JSON.stringify(two); // false
 ```
+---
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. How to remove array element based on object property?
+### Q17. How to remove array element based on object property?
 
 ```javascript
 var myArray = [
@@ -101,7 +459,7 @@ myArray = myArray.filter(function (obj) {
 Console.log(myArray);
 ```
 
-Output
+**Answer: **
 
 ```
 myArray = [
@@ -110,74 +468,85 @@ myArray = [
 ]
 ```
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+### Q18. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log(+"meow"); // Output: NaN
+console.log(+"meow");
 ```
+**Answer: NaN **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q19. Predict the output of the following JavaScript code?
 
 ```javascript
 var result;
 for (var i = 5; i > 0; i--) {
   result = result + i;
 }
-console.log(result); // Output: NaN
+console.log(result);
 ```
+**Answer: NaN **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q20. Predict the output of the following JavaScript code?
 
 ```javascript
 var a = 1.2;
-console.log(typeof a); // Output: Number
+console.log(typeof a);
 ```
+**Answer: Number **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q21. Predict the output of the following JavaScript code?
 
 ```javascript
 var x = 10;
 if (x) {
   let x = 4;
 }
-console.log(x); // Output: 10
+console.log(x); 
 ```
+**Answer: 10 **
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+### Q22. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log(0.1 + 0.2 == 0.3); // Output: false
+console.log(0.1 + 0.2 == 0.3);
 ```
+**Answer: false **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q23. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log(1 + -"1" + 2); // Output: 2
+console.log(1 + -"1" + 2);
 ```
+**Answer: 2 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q24. Predict the output of the following JavaScript code?
 
 ```javascript
 (function (x) {
   return (function (y) {
     console.log(x);
   })(10);
-})(20); // Output: 20
+})(20);
 ```
+**Answer: 20 **
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+### Q25. Predict the output of the following JavaScript code?
 
 ```javascript
 var num = 20;
@@ -185,51 +554,62 @@ var getNumber = function () {
   console.log(num);
   var num = 10;
 };
-getNumber(); // Output: undefined
+getNumber();
 ```
+**Answer: undefined **
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+### Q26. Predict the output of the following JavaScript code?
 
 ```javascript
 function f1() {
   num = 10;
 }
 f1();
-console.log("window.num: " + window.num); // output: 10
+console.log("window.num: " + window.num);
 ```
+**Answer: 10 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q27. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log("(null + undefined): " + (null + undefined)); // Output: NaN
+console.log("(null + undefined): " + (null + undefined));
 ```
+**Answer: NaN **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q28. Predict the output of the following JavaScript code?
 
 ```javascript
 (function () {
   var a = (b = 3);
 })();
 
-console.log("value of a : " + a); // Output: undefined
-console.log("value of b : " + b); // Output: 3
+console.log("value of a : " + a);
+console.log("value of b : " + b);
 ```
+**Answer: undefined 3 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q29. Predict the output of the following JavaScript code?
 
 ```javascript
 var y = 1;
 if (function f() {}) {
   y += typeof f;
 }
-console.log(y); // Output: 1Object
+console.log(y);
 ```
+**Answer: 10object **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q30. Predict the output of the following JavaScript code?
 
 ```javascript
 var k = 1;
@@ -237,14 +617,13 @@ if (1) {
   eval(function foo() {});
   k += typeof foo;
 }
-console.log(k); // Output: 1undefined
+console.log(k);
 ```
+**Answer: 1undefined **
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+### Q31. Predict the output of the following JavaScript code?
 
 ```javascript
 var k = 1;
@@ -252,55 +631,67 @@ if (1) {
   function foo() {}
   k += typeof foo;
 }
-console.log(k); // Output: 1function
+console.log(k);
 ```
+**Answer: 1function **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q32. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log("(-1 / 0): " + -1 / 0); // Output: -Infinity
-console.log("(1 / 0): " + 1 / 0); // Output: Infinity
-console.log("(0 / 0): " + 0 / 0); // Output: NaN
-console.log("(0 / 1): " + 0 / 1); // Output: 0
+console.log("(-1 / 0): " + -1 / 0); 
+console.log("(1 / 0): " + 1 / 0);
+console.log("(0 / 0): " + 0 / 0); 
+console.log("(0 / 1): " + 0 / 1);
 ```
+**Answer: -Infinity  Infinity  NaN  0 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q33. Predict the output of the following JavaScript code?
 
 ```javascript
 var a = 4;
 var b = "5";
 var c = 6;
 
-console.log("(a + b): " + (a + b)); // Output: 45
-console.log("(a - b): " + (a - b)); // Output: -1
-console.log("(a * b): " + a * b); // Output: 20
-console.log("(a / b): " + a / b); // Output: 0.8
-console.log("(a % b): " + (a % b)); // Output: 4
+console.log("(a + b): " + (a + b));
+console.log("(a - b): " + (a - b));
+console.log("(a * b): " + a * b);
+console.log("(a / b): " + a / b);
+console.log("(a % b): " + (a % b));
 ```
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+**Answer: 45  -1  20  0.8  4 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q34. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log("MAX : " + Math.max(10, 2, NaN)); // Output: NaN
-console.log("MAX : " + Math.max()); // Output: -Infinity
+console.log("MAX : " + Math.max(10, 2, NaN));
+console.log("MAX : " + Math.max());
 ```
+**Answer: NaN  -Infinity **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q35. Predict the output of the following JavaScript code?
 
 ```javascript
 (function () {
   var a = (b = 3);
 })();
 
-console.log("a defined? " + (typeof a !== "undefined")); // Output: true
-console.log("b defined? " + (typeof b !== "undefined")); // Output: true
+console.log("a defined? " + (typeof a !== "undefined"));
+console.log("b defined? " + (typeof b !== "undefined"));
 ```
+**Answer: true  true **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q36. Predict the output of the following JavaScript code?
 
 ```javascript
 var myObject = {
@@ -317,19 +708,22 @@ var myObject = {
 };
 myObject.func();
 ```
+**Answer: bar  bar  function foo() {}   bar **
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
-### Q. Predict the output of the following JavaScript code?
+
+### Q37. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log(0.1 + 0.2); // Output: 0.30000000000000004
-console.log(0.1 + 0.2 == 0.3); // Output: false
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 == 0.3);
 ```
+**Answer: 0.30000000000000004  false **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q38. Predict the output of the following JavaScript code?
 
 ```javascript
 (function () {
@@ -342,10 +736,12 @@ console.log(0.1 + 0.2 == 0.3); // Output: false
   }, 0);
   console.log(4);
 })();
-// Output: 1, 4, 3, 2
 ```
+**Answer: 1, 4, 3, 2 **
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q39. Predict the output of the following JavaScript code?
 
 ```javascript
 var arr1 = "john".split("");
@@ -355,21 +751,26 @@ arr2.push(arr3);
 console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1)); //array 1: length=5 last=j,o,n,e,s
 console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1)); //array 2: length=5 last=j,o,n,e,s
 ```
+**Answer: 
+array 1 : length=5 last=j,o,n,e,s
+array 2 : length=5 last=j,o,n,e,s
+**
 
-### Q. Predict the output of the following JavaScript code?
+---
+
+### Q40. Predict the output of the following JavaScript code?
 
 ```javascript
-console.log(1 + "2" + "2"); // Output: 122
-console.log(1 + +"2" + "2"); // Output: 32
-console.log(1 + -"1" + "2"); // Output: 02
-console.log(+"1" + "1" + "2"); // Output: 112
-console.log("A" - "B" + "2"); // Output: NaN2
-console.log("A" - "B" + 2); // Output: NaN
+console.log(1 + "2" + "2"); 
+console.log(1 + +"2" + "2"); 
+console.log(1 + -"1" + "2");
+console.log(+"1" + "1" + "2");
+console.log("A" - "B" + "2"); 
+console.log("A" - "B" + 2);
 ```
+**Answer: 122  32  02  112  NaN2  NaN**
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
 ### Q. Predict the output of the following JavaScript code?
 
@@ -647,225 +1048,6 @@ for (var i = 1; i <= 15; i++) {
     b = i % 5 == 0;
   console.log(f ? (b ? "FizzBuzz" : "Fizz") : b ? "Buzz" : i);
 }
-```
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What will be the output of the following code?
-
-```javascript
-var output = (function (x) {
-  delete x;
-  return x;
-})(0);
-
-console.log(output);
-```
-
-The code above will output `0` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **local variable**. `delete` operator doesn't affect local variables.
-
-### Q. What will be the output of the following code?
-
-```javascript
-var x = 1;
-var output = (function () {
-  delete x;
-  return x;
-})();
-
-console.log(output);
-```
-
-The code above will output `1` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **global variable** of type `number`.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What will be the output of the following code?
-
-```javascript
-var x = { foo: 1 };
-var output = (function () {
-  delete x.foo;
-  return x.foo;
-})();
-
-console.log(output);
-```
-
-The code above will output `undefined` as output. `delete` operator is used to delete a property from an object. Here `x` is an object which has foo as a property and from a self-invoking function, we are deleting the `foo` property of object `x` and after deletion, we are trying to reference deleted property `foo` which result `undefined`.
-
-### Q. What will be the output of the following code?
-
-```javascript
-var Employee = {
-  company: "xyz",
-};
-var emp1 = Object.create(Employee);
-delete emp1.company;
-console.log(emp1.company);
-```
-
-The code above will output `xyz` as output. Here `emp1` object got company as **prototype** property. delete operator doesn't delete prototype property.
-
-`emp1` object doesn't have **company** as its own property. you can test it `console.log(emp1.hasOwnProperty('company')); //output : false` However, we can delete company property directly from `Employee` object using `delete Employee.company` or we can also delete from `emp1` object using `__proto__` property `delete emp1.__proto__.company`.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What will be the output of the following code?
-
-```javascript
-var trees = ["xyz", "xxxx", "test", "ryan", "apple"];
-delete trees[3];
-console.log(trees.length);
-```
-
-The code above will output `5` as output. When we used `delete` operator for deleting an array element then, the array length is not affected by this. This holds even if you deleted all elements of an array using `delete` operator.
-
-So when delete operator removes an array element that deleted element is no longer present in the array. In place of value at deleted index `undefined x 1` in **chrome** and `undefined` is placed at the index. If you do `console.log(trees)` output `["xyz", "xxxx", "test", undefined × 1, "apple"]` in Chrome and in Firefox `["xyz", "xxxx", "test", undefined, "apple"]`.
-
-### Q. What will be the output of the following code?
-
-```javascript
-var bar = true;
-console.log(bar + 0);
-console.log(bar + "xyz");
-console.log(bar + true);
-console.log(bar + false);
-```
-
-The code above will output `1, "truexyz", 2, 1` as output. Here's a general guideline for the plus operator:
-
-- Number + Number -> Addition
-- Boolean + Number -> Addition
-- Boolean + Boolean -> Addition
-- Number + String -> Concatenation
-- String + Boolean -> Concatenation
-- String + String -> Concatenation
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What will be the output of the following code?
-
-```javascript
-var z = 1,
-  y = (z = typeof y);
-console.log(y);
-```
-
-The code above will print string `"undefined"` as output. According to associativity rule operator with the same precedence are processed based on their associativity property of operator. Here associativity of the assignment operator is `Right to Left` so first `typeof y` will evaluate first which is string `"undefined"` and assigned to `z` and then `y` would be assigned the value of z. The overall sequence will look like that:
-
-```javascript
-var z;
-z = 1;
-var y;
-z = typeof y;
-y = z;
-```
-
-### Q. What will be the output of the following code?
-
-```javascript
-// NFE (Named Function Expression)
-var foo = function bar() {
-  return 12;
-};
-typeof bar();
-```
-
-The output will be `Reference Error`. To fix the bug we can try to rewrite the code a little bit:
-
-**Sample 1**
-
-```javascript
-var bar = function () {
-  return 12;
-};
-typeof bar();
-```
-
-or
-
-**Sample 2**
-
-```javascript
-function bar() {
-  return 12;
-}
-typeof bar();
-```
-
-The function definition can have only one reference variable as a function name, In **sample 1** `bar` is reference variable which is pointing to `anonymous function` and in **sample 2** we have function statement and `bar` is the function name.
-
-```javascript
-var foo = function bar() {
-  // foo is visible here
-  // bar is visible here
-  console.log(typeof bar()); // Works here :)
-};
-// foo is visible here
-// bar is undefined here
-```
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What is the output of the following?
-
-```javascript
-bar();
-(function abc() {
-  console.log("something");
-})();
-function bar() {
-  console.log("bar got called");
-}
-```
-
-The output will be :
-
-```
-bar got called
-something
-```
-
-Since the function is called first and defined during parse time the JS engine will try to find any possible parse time definitions and start the execution loop which will mean function is called first even if the definition is post another function.
-
-### Q. What will be the output of the following code?
-
-```javascript
-var salary = "1000$";
-
-(function () {
-  console.log("Original salary was " + salary);
-
-  var salary = "5000$";
-
-  console.log("My New Salary " + salary);
-})();
-```
-
-The code above will output: `undefined, 5000$` because of hoisting. In the code presented above, you might be expecting `salary` to retain it values from outer scope until the point that `salary` was re-declared in the inner scope. But due to `hoisting` salary value was `undefined` instead. To understand it better have a look of the following code, here `salary` variable is hoisted and declared at the top in function scope. When we print its value using `console.log` the result is `undefined`. Afterwards the variable is redeclared and the new value `"5000$"` is assigned to it.
-
-```javascript
-var salary = "1000$";
-
-(function () {
-  var salary = undefined;
-  console.log("Original salary was " + salary);
-
-  salary = "5000$";
-
-  console.log("My New Salary " + salary);
-})();
 ```
 
 <div align="right">
@@ -4371,38 +4553,6 @@ In the second loop, the variable `i` was declared using the `let` keyword: varia
 ### Q. What is the output?
 
 ```javascript
-const shape = {
-  radius: 10,
-  diameter() {
-    return this.radius * 2;
-  },
-  perimeter: () => 2 * Math.PI * this.radius,
-};
-
-console.log(shape.diameter());
-console.log(shape.perimeter());
-```
-
-- A: `20` and `62.83185307179586`
-- B: `20` and `NaN`
-- C: `20` and `63`
-- D: `NaN` and `63`
-
-**Answer: B**
-
-Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
-
-With arrow functions, the `this` keyword refers to its current surrounding scope, unlike regular functions! This means that when we call `perimeter`, it doesn't refer to the shape object, but to its surrounding scope (window for example).
-
-There is no value `radius` on that object, which returns `undefined`.
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. What is the output?
-
-```javascript
 +true;
 !"Lydia";
 ```
@@ -7642,42 +7792,6 @@ for (let i = 0; i < 3; i++) {
 Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.
 
 In the second loop, the variable `i` was declared using the `let` keyword: variables declared with the `let` (and `const`) keyword are block-scoped (a block is anything between `{ }`). During each iteration, `i` will have a new value, and each value is scoped inside the loop.
-
-</p>
-</details>
-
----
-
-###### 3. What's the output?
-
-```javascript
-const shape = {
-  radius: 10,
-  diameter() {
-    return this.radius * 2;
-  },
-  perimeter: () => 2 * Math.PI * this.radius,
-};
-
-console.log(shape.diameter());
-console.log(shape.perimeter());
-```
-
-- A: `20` and `62.83185307179586`
-- B: `20` and `NaN`
-- C: `20` and `63`
-- D: `NaN` and `63`
-
-<details><summary><b>Answer</b></summary>
-<p>
-
-#### Answer: B
-
-Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
-
-With arrow functions, the `this` keyword refers to its current surrounding scope, unlike regular functions! This means that when we call `perimeter`, it doesn't refer to the shape object, but to its surrounding scope (window for example).
-
-There is no value `radius` on that object, which returns `NaN`.
 
 </p>
 </details>
@@ -12635,11 +12749,6 @@ The condition within the `if` statement checks whether the value of `!typeof ran
 
 </p>
 </details>
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
 
 <div align="right">
     <b><a href="#">↥ back to top</a></b>
