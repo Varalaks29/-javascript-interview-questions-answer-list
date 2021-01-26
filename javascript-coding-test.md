@@ -267,7 +267,7 @@ var foo = function bar() {
 // bar is undefined here
 ```
 </p>
-</dietails>
+</details>
 
 ---
 
