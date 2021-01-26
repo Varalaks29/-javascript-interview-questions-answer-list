@@ -34,6 +34,7 @@ console.log(shape.perimeter());
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Note that the value of `diameter` is a regular function, whereas the value of `perimeter` is an arrow function.
 
 With arrow functions, the `this` keyword refers to its current surrounding scope, unlike regular functions! This means that when we call `perimeter`, it doesn't refer to the shape object, but to its surrounding scope (window for example).
@@ -59,6 +60,8 @@ console.log(output);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 The code above will output `0` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **local variable**. `delete` operator doesn't affect local variables.
 </p>
 </details>
@@ -80,6 +83,8 @@ console.log(output);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 The code above will output `1` as output. `delete` operator is used to delete a property from an object. Here `x` is not an object it's **global variable** of type `number`.
 </p>
 </details>
@@ -101,6 +106,8 @@ console.log(output);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 The code above will output `undefined` as output. `delete` operator is used to delete a property from an object. Here `x` is an object which has foo as a property and from a self-invoking function, we are deleting the `foo` property of object `x` and after deletion, we are trying to reference deleted property `foo` which result `undefined`.
 </p>
 </details>
@@ -121,6 +128,8 @@ console.log(emp1.company);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 The code above will output `xyz` as output. Here `emp1` object got company as **prototype** property. delete operator doesn't delete prototype property.
 
 `emp1` object doesn't have **company** as its own property. you can test it `console.log(emp1.hasOwnProperty('company')); //output : false` However, we can delete company property directly from `Employee` object using `delete Employee.company` or we can also delete from `emp1` object using `__proto__` property `delete emp1.__proto__.company`.
@@ -138,6 +147,8 @@ delete trees[3];
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
  - When you run the code above and do `console.log(trees);` in chrome developer console then you will get `["redwood", "bay", "cedar", undefined × 1, "maple"]`.
  - In the recent versions of Chrome you will see the word `empty` of `undefined x 1`.
  - When you run the same code in Firefox browser console then you will get `["redwood", "bay", "cedar", undefined, "maple"]`
@@ -161,6 +172,8 @@ console.log(trees.length);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 The code above will output `5` as output. When we used `delete` operator for deleting an array element then, the array length is not affected by this. This holds even if you deleted all elements of an array using `delete` operator.
 
 So when delete operator removes an array element that deleted element is no longer present in the array. In place of value at deleted index `undefined x 1` in **chrome** and `undefined` is placed at the index. If you do `console.log(trees)` output `["xyz", "xxxx", "test", undefined × 1, "apple"]` in Chrome and in Firefox `["xyz", "xxxx", "test", undefined, "apple"]`.
@@ -182,6 +195,7 @@ console.log(bar + false);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The code above will output `1, "truexyz", 2, 1` as output. Here's a general guideline for the plus operator:
 
 - Number + Number -> Addition
@@ -206,6 +220,7 @@ console.log(y);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The code above will print string `"undefined"` as output. According to associativity rule operator with the same precedence are processed based on their associativity property of operator. Here associativity of the assignment operator is `Right to Left` so first `typeof y` will evaluate first which is string `"undefined"` and assigned to `z` and then `y` would be assigned the value of z. The overall sequence will look like that:
 
 ```javascript
@@ -233,6 +248,7 @@ typeof bar();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The output will be `Reference Error`. To fix the bug we can try to rewrite the code a little bit:
 
 **Sample 1**
@@ -283,15 +299,17 @@ function bar() {
 }
 ```
 
-**Answer: **
+**Answer:**
 ```
 bar got called
 something
 ```
 <details><summary><b>Explanation</b></summary>
 <p>
+
 Since the function is called first and defined during parse time the JS engine will try to find any possible parse time definitions and start the execution loop which will mean function is called first even if the definition is post another function.
 <p>
+
 </details>
 
 ---
@@ -311,6 +329,7 @@ function bar () {
 ```
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The main difference is that function `foo` is defined at `run-time` and is called a function expression, whereas function `bar` is defined at `parse time` and is called a function statement. To understand it better, let's take a look at the code below :
 
 ```javascript
@@ -346,10 +365,11 @@ var salary = "1000$";
   console.log("My New Salary " + salary);
 })();
 ```
-**Answer: undefined, 5000$ **
+**Answer: undefined, 5000$**
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The code above will output: `undefined, 5000$` because of hoisting. In the code presented above, you might be expecting `salary` to retain it values from outer scope until the point that `salary` was re-declared in the inner scope. But due to `hoisting` salary value was `undefined` instead. To understand it better have a look of the following code, here `salary` variable is hoisted and declared at the top in function scope. When we print its value using `console.log` the result is `undefined`. Afterwards the variable is redeclared and the new value `"5000$"` is assigned to it.
 
 ```javascript
@@ -459,7 +479,7 @@ myArray = myArray.filter(function (obj) {
 Console.log(myArray);
 ```
 
-**Answer: **
+**Answer:**
 
 ```
 myArray = [
@@ -475,7 +495,7 @@ myArray = [
 ```javascript
 console.log(+"meow");
 ```
-**Answer: NaN **
+**Answer: NaN**
 
 ---
 
@@ -488,7 +508,7 @@ for (var i = 5; i > 0; i--) {
 }
 console.log(result);
 ```
-**Answer: NaN **
+**Answer: NaN**
 
 ---
 
@@ -498,7 +518,7 @@ console.log(result);
 var a = 1.2;
 console.log(typeof a);
 ```
-**Answer: Number **
+**Answer: Number**
 
 ---
 
@@ -511,7 +531,7 @@ if (x) {
 }
 console.log(x); 
 ```
-**Answer: 10 **
+**Answer: 10**
 
 ---
 
@@ -520,7 +540,7 @@ console.log(x);
 ```javascript
 console.log(0.1 + 0.2 == 0.3);
 ```
-**Answer: false **
+**Answer: false**
 
 ---
 
@@ -529,7 +549,7 @@ console.log(0.1 + 0.2 == 0.3);
 ```javascript
 console.log(1 + -"1" + 2);
 ```
-**Answer: 2 **
+**Answer: 2**
 
 ---
 
@@ -542,7 +562,7 @@ console.log(1 + -"1" + 2);
   })(10);
 })(20);
 ```
-**Answer: 20 **
+**Answer: 20**
 
 ---
 
@@ -556,7 +576,7 @@ var getNumber = function () {
 };
 getNumber();
 ```
-**Answer: undefined **
+**Answer: undefined**
 
 ---
 
@@ -569,7 +589,7 @@ function f1() {
 f1();
 console.log("window.num: " + window.num);
 ```
-**Answer: 10 **
+**Answer: 10**
 
 ---
 
@@ -578,7 +598,7 @@ console.log("window.num: " + window.num);
 ```javascript
 console.log("(null + undefined): " + (null + undefined));
 ```
-**Answer: NaN **
+**Answer: NaN**
 
 ---
 
@@ -592,7 +612,7 @@ console.log("(null + undefined): " + (null + undefined));
 console.log("value of a : " + a);
 console.log("value of b : " + b);
 ```
-**Answer: undefined 3 **
+**Answer: undefined 3**
 
 ---
 
@@ -605,7 +625,7 @@ if (function f() {}) {
 }
 console.log(y);
 ```
-**Answer: 10object **
+**Answer: 10object**
 
 ---
 
@@ -619,7 +639,7 @@ if (1) {
 }
 console.log(k);
 ```
-**Answer: 1undefined **
+**Answer: 1undefined**
 
 ---
 
@@ -633,7 +653,7 @@ if (1) {
 }
 console.log(k);
 ```
-**Answer: 1function **
+**Answer: 1function**
 
 ---
 
@@ -645,7 +665,7 @@ console.log("(1 / 0): " + 1 / 0);
 console.log("(0 / 0): " + 0 / 0); 
 console.log("(0 / 1): " + 0 / 1);
 ```
-**Answer: -Infinity  Infinity  NaN  0 **
+**Answer: -Infinity  Infinity  NaN  0**
 
 ---
 
@@ -663,7 +683,7 @@ console.log("(a / b): " + a / b);
 console.log("(a % b): " + (a % b));
 ```
 
-**Answer: 45  -1  20  0.8  4 **
+**Answer: 45  -1  20  0.8  4**
 
 ---
 
@@ -673,7 +693,7 @@ console.log("(a % b): " + (a % b));
 console.log("MAX : " + Math.max(10, 2, NaN));
 console.log("MAX : " + Math.max());
 ```
-**Answer: NaN  -Infinity **
+**Answer: NaN  -Infinity**
 
 ---
 
@@ -687,7 +707,7 @@ console.log("MAX : " + Math.max());
 console.log("a defined? " + (typeof a !== "undefined"));
 console.log("b defined? " + (typeof b !== "undefined"));
 ```
-**Answer: true  true **
+**Answer: true  true**
 
 ---
 
@@ -708,7 +728,7 @@ var myObject = {
 };
 myObject.func();
 ```
-**Answer: bar  bar  function foo() {}   bar **
+**Answer: bar  bar  function foo() {}   bar**
 
 ---
 
@@ -719,7 +739,7 @@ myObject.func();
 console.log(0.1 + 0.2);
 console.log(0.1 + 0.2 == 0.3);
 ```
-**Answer: 0.30000000000000004  false **
+**Answer: 0.30000000000000004  false**
 
 ---
 
@@ -737,7 +757,7 @@ console.log(0.1 + 0.2 == 0.3);
   console.log(4);
 })();
 ```
-**Answer: 1, 4, 3, 2 **
+**Answer: 1, 4, 3, 2**
 
 ---
 
@@ -751,10 +771,9 @@ arr2.push(arr3);
 console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1)); //array 1: length=5 last=j,o,n,e,s
 console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1)); //array 2: length=5 last=j,o,n,e,s
 ```
-**Answer: 
-array 1 : length=5 last=j,o,n,e,s
-array 2 : length=5 last=j,o,n,e,s
-**
+**Answer:**
+**array 1 : length=5 last=j,o,n,e,s**
+**array 2 : length=5 last=j,o,n,e,s**
 
 ---
 
@@ -4325,6 +4344,7 @@ sayHi();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 Within the function, we first declare the `name` variable with the `var` keyword. This means that the variable gets hoisted (memory space is set up during the creation phase) with the default value of `undefined`, until we actually get to the line where we define the variable. We haven't defined the variable yet on the line where we try to log the `name` variable, so it still holds the value of `undefined`.
 
 Variables with the `let` keyword (and `const`) are hoisted, but unlike `var`, don't get <i>initialized</i>. They are not accessible before the line we declare (initialize) them. This is called the "temporal dead zone". When we try to access the variables before they are declared, JavaScript throws a `ReferenceError`.
@@ -4355,6 +4375,7 @@ for (let i = 0; i < 3; i++) {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 Because of the event queue in JavaScript, the `setTimeout` callback function is called _after_ the loop has been executed. Since the variable `i` in the first loop was declared using the `var` keyword, this value was global. During the loop, we incremented the value of `i` by `1` each time, using the unary operator `++`. By the time the `setTimeout` callback function was invoked, `i` was equal to `3` in the first example.
 
 In the second loop, the variable `i` was declared using the `let` keyword: variables declared with the `let` (and `const`) keyword are block-scoped (a block is anything between `{ }`). During each iteration, `i` will have a new value, and each value is scoped inside the loop.
@@ -4378,6 +4399,7 @@ In the second loop, the variable `i` was declared using the `let` keyword: varia
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The unary plus tries to convert an operand to a number. `true` is `1`, and `false` is `0`.
 
 The string `'Jhone'` is a truthy value. What we're actually asking, is "is this truthy value falsy?". This returns `false`.
@@ -4408,6 +4430,7 @@ const mouse = {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 In JavaScript, all object keys are strings (unless it's a Symbol). Even though we might not _type_ them as strings, they are always converted into strings under the hood.
 
 JavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket `[` and keeps going until it finds the closing bracket `]`. Only then, it will evaluate the statement.
@@ -4441,6 +4464,7 @@ console.log(d.greeting);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 In JavaScript, all objects interact by _reference_ when setting them equal to each other.
 
 First, variable `c` holds a value to an object. Later, we assign `d` with the same reference that `c` has to the object.
@@ -4474,6 +4498,7 @@ console.log(b === c);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 `new Number()` is a built-in function constructor. Although it looks like a number, it's not really a number: it has a bunch of extra features and is an object.
 
 When we use the `==` operator, it only checks whether it has the same _value_. They both have the value of `3`, so it returns `true`.
@@ -4511,6 +4536,7 @@ console.log(freddie.colorChange("orange"));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The `colorChange` function is static. Static methods are designed to live only on the constructor in which they are created, and cannot be passed down to any children. Since `freddie` is a child, the function is not passed down, and not available on the `freddie` instance: a `TypeError` is thrown.
 </p>
 </details>
@@ -4533,6 +4559,7 @@ console.log(greetign);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 It logs the object, because we just created an empty object on the global object! When we mistyped `greeting` as `greetign`, the JS interpreter actually saw this as `global.greetign = {}` (or `window.greetign = {}` in a browser).
 
 In order to avoid this, we can use `"use strict"`. This makes sure that you have declared a variable before setting it equal to anything.
@@ -4560,6 +4587,7 @@ bark.animal = "dog";
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 This is possible in JavaScript, because functions are objects! (Everything besides primitive types are objects)
 
 A function is a special type of object. The code you write yourself isn't the actual function. The function is an object with properties. This property is invocable.
@@ -4593,6 +4621,7 @@ console.log(member.getFullName());
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 In JavaScript, functions are objects, and therefore, the method `getFullName` gets added to the constructor function object itself. For that reason, we can call `Person.getFullName()`, but `member.getFullName` throws a `TypeError`. 
 
 If you want a method to be available to all object instances, you have to add it to the prototype property:
@@ -4632,6 +4661,8 @@ console.log(sarah);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 For `sarah`, we didn't use the `new` keyword. When using `new`, `this` refers to the new empty object we create. However, if you don't add `new`, `this` refers to the **global object**!
 
 We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smith"`. What we actually did, is defining `global.firstName = 'Sarah'` and `global.lastName = 'Smith'`. `sarah` itself is left `undefined`, since we don't return a value from the `Person` function.
@@ -4651,6 +4682,8 @@ We said that `this.firstName` equals `"Sarah"` and `this.lastName` equals `"Smit
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 During the **capturing** phase, the event goes through the ancestor elements down to the target element. It then reaches the **target** element, and **bubbling** begins.
 
 <img src="https://i.imgur.com/N18oRgd.png" width="200">
@@ -4669,6 +4702,8 @@ During the **capturing** phase, the event goes through the ancestor elements dow
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
+
 All objects have prototypes, except for the **base object**. The base object is the object created by the user, or an object that is created using the `new` keyword. The base object has access to some methods and properties, such as `.toString`. This is the reason why you can use built-in JavaScript methods! All of such methods are available on the prototype. Although JavaScript can't find it directly on your object, it goes down the prototype chain and finds it there, which makes it accessible for you.
 </p>
 </details>
@@ -4694,6 +4729,7 @@ sum(1, "2");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 JavaScript is a **dynamically typed language**: we don't specify what types certain variables are. Values can automatically be converted into another type without you knowing, which is called _implicit type coercion_. **Coercion** is converting from one type into another.
 
@@ -4722,6 +4758,7 @@ console.log(number);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The **postfix** unary operator `++`:
 
@@ -4764,6 +4801,7 @@ getPersonInfo`${person} is ${age} years old`;
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 If you use tagged template literals, the value of the first argument is always an array of the string values. The remaining arguments get the values of the passed expressions!
 
 </p>
@@ -4796,6 +4834,7 @@ checkAge({ age: 18 });
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 When testing equality, primitives are compared by their _value_, while objects are compared by their _reference_. JavaScript checks if the objects have a reference to the same location in memory.
 
 The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
@@ -4827,6 +4866,7 @@ getAge(21);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The rest parameter (`...args`) lets us "collect" all remaining arguments into an array. An array is an object, so `typeof args` returns `"object"`
 
 </p>
@@ -4856,6 +4896,7 @@ getAge();
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With `"use strict"`, you can make sure that you don't accidentally declare global variables. We never declared the variable `age`, and since we use `"use strict"`, it will throw a reference error. If we didn't use `"use strict"`, it would have worked, since the property `age` would have gotten added to the global object.
 
 </p>
@@ -4878,6 +4919,7 @@ const sum = eval("10*10+5");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 `eval` evaluates codes that's passed as a string. If it's an expression, like in this case, it evaluates the expression. The expression is `10 * 10 + 5`. This returns the number `105`.
 
 </p>
@@ -4900,6 +4942,7 @@ sessionStorage.setItem("cool_secret", 123);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The data stored in `sessionStorage` is removed after closing the _tab_.
 
@@ -4928,6 +4971,7 @@ console.log(num);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 With the `var` keyword, you can declare multiple variables with the same name. The variable will then hold the latest value.
 You cannot do this with `let` or `const` since they're block-scoped.
@@ -4959,6 +5003,7 @@ set.has(1);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 All object keys (excluding Symbols) are strings under the hood, even if you don't type it yourself as a string. This is why `obj.hasOwnProperty('1')` also returns true.
 
 It doesn't work that way for a set. There is no `'1'` in our set: `set.has('1')` returns `false`. It has the numeric type `1`, `set.has(1)` returns `true`.
@@ -4985,6 +5030,7 @@ console.log(obj);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.
 
 </p>
@@ -5002,6 +5048,7 @@ If you have two keys with the same name, the key will be replaced. It will still
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The base execution context is the global execution context: it's what's accessible everywhere in your code.
 
 </p>
@@ -5027,6 +5074,7 @@ for (let i = 1; i < 5; i++) {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The `continue` statement skips an iteration if a certain condition returns `true`.
 
@@ -5057,6 +5105,7 @@ name.giveJhonePizza();
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 `String` is a built-in constructor, which we can add properties to. I just added a method to its prototype. Primitive strings are automatically converted into a string object, generated by the string prototype function. So, all strings (string objects) have access to that method!
 
 </p>
@@ -5086,6 +5135,7 @@ console.log(a[b]);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Object keys are automatically converted into strings. We are trying to set an object as a key to object `a`, with the value of `123`.
 
@@ -5119,6 +5169,7 @@ baz();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 We have a `setTimeout` function and invoked it first. Yet, it was logged last.
 
@@ -5172,6 +5223,7 @@ This is where an event loop starts to work. An **event loop** looks at the stack
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The deepest nested element that caused the event is the target of the event. You can stop bubbling by `event.stopPropagation`
 
 </p>
@@ -5196,6 +5248,7 @@ The deepest nested element that caused the event is the target of the event. You
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 If we click `p`, we see two logs: `p` and `div`. During event propagation, there are 3 phases: capturing, target, and bubbling. By default, event handlers are executed in the bubbling phase (unless you set `useCapture` to `true`). It goes from the deepest nested element outwards.
 
@@ -5227,6 +5280,7 @@ sayHi.bind(person, 21);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With both, we can pass the object to which we want the `this` keyword to refer to. However, `.call` is also _executed immediately_!
 
 `.bind.` returns a _copy_ of the function, but with a bound context! It is not executed immediately.
@@ -5255,6 +5309,7 @@ console.log(typeof sayHi());
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The `sayHi` function returns the returned value of the immediately invoked function expression (IIFE). This function returned `0`, which is type `"number"`.
 
 FYI: there are only 7 built-in types: `null`, `undefined`, `boolean`, `number`, `string`, `object`, and `symbol`. `"function"` is not a type, since functions are objects, it's of type `"object"`.
@@ -5284,6 +5339,7 @@ undefined;
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 There are 8 falsy values:
 
@@ -5319,6 +5375,7 @@ console.log(typeof typeof 1);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 `typeof 1` returns `"number"`.
 `typeof "number"` returns `"string"`
 
@@ -5344,6 +5401,7 @@ console.log(numbers);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 When you set a value to an element in an array that exceeds the length of the array, JavaScript creates something called "empty slots". These actually have the value of `undefined`, but you will see something like:
 
@@ -5382,6 +5440,7 @@ depending on where you run it (it's different for every browser, node, etc.)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `catch` block receives the argument `x`. This is not the same `x` as the variable when we pass arguments. This variable `x` is block-scoped.
 
 Later, we set this block-scoped variable equal to `1`, and set the value of the variable `y`. Now, we log the block-scoped variable `x`, which is equal to `1`.
@@ -5404,6 +5463,7 @@ Outside of the `catch` block, `x` is still `undefined`, and `y` is `2`. When we 
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 JavaScript only has primitive types and objects.
 
 Primitive types are `boolean`, `null`, `undefined`, `bigint`, `number`, `string`, and `symbol`.
@@ -5436,6 +5496,7 @@ What differentiates a primitive from an object is that primitives do not have an
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 `[1, 2]` is our initial value. This is the value we start with, and the value of the very first `acc`. During the first round, `acc` is `[1,2]`, and `cur` is `[0, 1]`. We concatenate them, which results in `[1, 2, 0, 1]`.
 
 Then, `[1, 2, 0, 1]` is `acc` and `[2, 3]` is `cur`. We concatenate them, and get `[1, 2, 0, 1, 2, 3]`
@@ -5462,6 +5523,7 @@ Then, `[1, 2, 0, 1]` is `acc` and `[2, 3]` is `cur`. We concatenate them, and ge
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 `null` is falsy. `!null` returns `true`. `!true` returns `false`.
 
@@ -5490,6 +5552,7 @@ setInterval(() => console.log("Hi"), 1000);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 It returns a unique id. This id can be used to clear that interval with the `clearInterval()` function.
 
 </p>
@@ -5512,6 +5575,7 @@ It returns a unique id. This id can be used to clear that interval with the `cle
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 A string is an iterable. The spread operator maps every character of an iterable to one element.
 
 </p>
@@ -5542,6 +5606,7 @@ console.log(gen.next().value);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Regular functions cannot be stopped mid-way after invocation. However, a generator function can be "stopped" midway, and later continue from where it stopped. Every time a generator function encounters a `yield` keyword, the function yields the value specified after it. Note that the generator function in that case doesn’t _return_ the value, it _yields_ the value.
 
@@ -5578,6 +5643,7 @@ Promise.race([firstPromise, secondPromise]).then((res) => console.log(res));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 When we pass multiple promises to the `Promise.race` method, it resolves/rejects the _first_ promise that resolves/rejects. To the `setTimeout` method, we pass a timer: 500ms for the first promise (`firstPromise`), and 100ms for the second promise (`secondPromise`). This means that the `secondPromise` resolves first with the value of `'two'`. `res` now holds the value of `'two'`, which gets logged.
 
 </p>
@@ -5604,6 +5670,7 @@ console.log(members);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 First, we declare a variable `person` with the value of an object that has a `name` property.
 
@@ -5647,6 +5714,7 @@ for (const item in person) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With a `for-in` loop, we can iterate through object keys, in this case `name` and `age`. Under the hood, object keys are strings (if they're not a Symbol). On every loop, we set the value of `item` equal to the current key it’s iterating over. First, `item` is equal to `name`, and gets logged. Then, `item` is equal to `age`, which gets logged.
 
 </p>
@@ -5669,6 +5737,7 @@ console.log(3 + 4 + "5");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Operator associativity is the order in which the compiler evaluates the expressions, either left-to-right or right-to-left. This only happens if all operators have the _same_ precedence. We only have one type of operator: `+`. For addition, the associativity is left-to-right.
 
@@ -5698,6 +5767,7 @@ const num = parseInt("7*6", 10);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Only the first numbers in the string is returned. Based on the _radix_ (the second argument in order to specify what type of number we want to parse it to: base 10, hexadecimal, octal, binary, etc.), the `parseInt` checks whether the characters in the string are valid. Once it encounters a character that isn't a valid number in the radix, it stops parsing and ignores the following characters.
 
 `*` is not a valid number. It only parses `"7"` into the decimal `7`. `num` now holds the value of `7`.
@@ -5725,6 +5795,7 @@ Only the first numbers in the string is returned. Based on the _radix_ (the seco
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 When mapping over the array, the value of `num` is equal to the element it’s currently looping over. In this case, the elements are numbers, so the condition of the if statement `typeof num === "number"` returns `true`. The map function creates a new array and inserts the values returned from the function.
 
@@ -5760,6 +5831,7 @@ console.log(person, birthYear);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Arguments are passed by _value_, unless their value is an object, then they're passed by _reference_. `birthYear` is passed by value, since it's a string, not an object. When we pass arguments by value, a _copy_ of that value is created (see question 46).
 
@@ -5799,6 +5871,7 @@ sayHi();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 With the `throw` statement, we can create custom errors. With this statement, you can throw exceptions. An exception can be a <b>string</b>, a <b>number</b>, a <b>boolean</b> or an <b>object</b>. In this case, our exception is the string `'Hello world!'`.
 
 With the `catch` statement, we can specify what to do if an exception is thrown in the `try` block. An exception is thrown: the string `'Hello world!'`. `e` is now equal to that string, which we log. This results in `'Oh an error: Hello world!'`.
@@ -5828,6 +5901,7 @@ console.log(myCar.make);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 When you return a property, the value of the property is equal to the _returned_ value, not the value set in the constructor function. We return the string `"Maserati"`, so `myCar.make` is equal to `"Maserati"`.
 </p>
 </details>
@@ -5854,6 +5928,7 @@ console.log(typeof y);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 `let x = (y = 10);` is actually shorthand for:
 
 ```javascript
@@ -5903,6 +5978,7 @@ pet.bark();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 We can delete properties from objects using the `delete` keyword, also on the prototype. By deleting a property on the prototype, it is not available anymore in the prototype chain. In this case, the `bark` function is not available anymore on the prototype after `delete Dog.prototype.bark`, yet we still try to access it.
 
 When we try to invoke something that is not a function, a `TypeError` is thrown. In this case `TypeError: pet.bark is not a function`, since `pet.bark` is `undefined`.
@@ -5928,6 +6004,7 @@ console.log(set);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 The `Set` object is a collection of _unique_ values: a value can only occur once in a set.
 
 We passed the iterable `[1, 1, 2, 3, 4]` with a duplicate value `1`. Since we cannot have two of the same values in a set, one of them is removed. This results in `{1, 2, 3, 4}`.
@@ -5962,6 +6039,7 @@ console.log(myCounter);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 An imported module is _read-only_: you cannot modify the imported module. Only the module that exports them can change its value.
 
 When we try to increment the value of `myCounter`, it throws an error: `myCounter` is read-only and cannot be modified.
@@ -5990,6 +6068,7 @@ console.log(delete age);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `delete` operator returns a boolean value: `true` on a successful deletion, else it'll return `false`. However, variables declared with the `var`, `const` or `let` keyword cannot be deleted using the `delete` operator.
 
 The `name` variable was declared with a `const` keyword, so its deletion is not successful: `false` is returned. When we set `age` equal to `21`, we actually added a property called `age` to the global object. You can successfully delete properties from objects this way, also the global object, so `delete age` returns `true`.
@@ -6017,6 +6096,7 @@ console.log(y);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 We can unpack values from arrays or properties from objects through destructuring. For example:
 
@@ -6060,6 +6140,7 @@ console.log(admin);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 It's possible to combine objects using the spread operator `...`. It lets you create copies of the key/value pairs of one object, and add them to another object. In this case, we create copies of the `user` object, and add them to the `admin` object. The `admin` object now contains the copied key/value pairs, which results in `{ admin: true, name: "Jhone", age: 21 }`.
 
 </p>
@@ -6087,6 +6168,7 @@ console.log(Object.keys(person));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 With the `defineProperty` method, we can add new properties to an object, or modify existing ones. When we add a property to an object using the `defineProperty` method, they are by default _not enumerable_. The `Object.keys` method returns all _enumerable_ property names from an object, in this case only `"name"`.
 
@@ -6119,6 +6201,7 @@ console.log(data);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The second argument of `JSON.stringify` is the _replacer_. The replacer can either be a function or an array, and lets you control what and how the values should be stringified.
 
@@ -6156,6 +6239,7 @@ console.log(num2);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The unary operator `++` _first returns_ the value of the operand, _then increments_ the value of the operand. The value of `num1` is `10`, since the `increaseNumber` function first returns the value of `num`, which is `10`, and only increments the value of `num` afterwards.
 
 `num2` is `10`, since we passed `num1` to the `increasePassedNumber`. `number` is equal to `10`(the value of `num1`. Again, the unary operator `++` _first returns_ the value of the operand, _then increments_ the value of the operand. The value of `number` is `10`, so `num2` is equal to `10`.
@@ -6190,6 +6274,7 @@ multiply(value);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 In ES6, we can initialize parameters with a default value. The value of the parameter will be the default value, if no other value has been passed to the function, or if the value of the parameter is `"undefined"`. In this case, we spread the properties of the `value` object into a new object, so `x` has the default value of `{ number: 10 }`.
 
 The default argument is evaluated at _call time_! Every time we call the function, a _new_ object is created. We invoke the `multiply` function the first two times without passing a value: `x` has the default value of `{ number: 10 }`. We then log the multiplied value of that number, which is `20`.
@@ -6218,6 +6303,7 @@ The fourth time, we pass the `value` object again. `x.number` was previously mod
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The first argument that the `reduce` method receives is the _accumulator_, `x` in this case. The second argument is the _current value_, `y`. With the reduce method, we execute a callback function on every element in the array, which could ultimately result in one single value.
 
@@ -6278,6 +6364,7 @@ class Labrador extends Dog {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 In a derived class, you cannot access the `this` keyword before calling `super`. If you try to do that, it will throw a ReferenceError: 1 and 4 would throw a reference error.
 
 With the `super` keyword, we call that parent class's constructor with the given arguments. The parent's constructor receives the `name` argument, so we need to pass `name` to `super`.
@@ -6312,6 +6399,7 @@ export const sum = (a, b) => a + b;
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With the `import` keyword, all imported modules are _pre-parsed_. This means that the imported modules get run _first_, the code in the file which imports the module gets executed _after_.
 
 This is a difference between `require()` in CommonJS and `import`! With `require()`, you can load dependencies on demand while the code is being run. If we would have used `require` instead of `import`, `running index.js`, `running sum.js`, `3` would have been logged to the console.
@@ -6339,6 +6427,7 @@ console.log(Symbol("foo") === Symbol("foo"));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Every Symbol is entirely unique. The purpose of the argument passed to the Symbol is to give the Symbol a description. The value of the Symbol is not dependent on the passed argument. As we test equality, we are creating two entirely new symbols: the first `Symbol('foo')`, and the second `Symbol('foo')`. These two values are unique and not equal to each other, `Symbol('foo') === Symbol('foo')` returns `false`.
 
 </p>
@@ -6364,6 +6453,7 @@ console.log(name.padStart(2));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With the `padStart` method, we can add padding to the beginning of a string. The value passed to this method is the _total_ length of the string together with the padding. The string `"Jhone Hallie"` has a length of `12`. `name.padStart(13)` inserts 1 space at the start of the string, because 12 + 1 is 13.
 
 If the argument passed to the `padStart` method is smaller than the length of the array, no padding will be added.
@@ -6388,6 +6478,7 @@ console.log("🥑" + "💻");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: A
 
@@ -6424,6 +6515,7 @@ console.log(/* 2 */); // JavaScript loves you back ❤️
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 A generator function "pauses" its execution when it sees the `yield` keyword. First, we have to let the function yield the string "Do you love JavaScript?", which can be done by calling `game.next().value`.
 
 Every line is executed, until it finds the first `yield` keyword. There is a `yield` keyword on the first line within the function: the execution stops with the first yield! _This means that the variable `answer` is not defined yet!_
@@ -6450,6 +6542,7 @@ console.log(String.raw`Hello\nworld`);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 `String.raw` returns a string where the escapes (`\n`, `\v`, `\t` etc.) are ignored! Backslashes can be an issue since you could end up with something like:
 
@@ -6491,6 +6584,7 @@ console.log(data);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 An async function always returns a promise. The `await` still has to wait for the promise to resolve: a pending promise gets returned when we call `getData()` in order to set `data` equal to it.
 
 If we wanted to get access to the resolved value `"I made it"`, we could have used the `.then()` method on `data`:
@@ -6525,6 +6619,7 @@ console.log(result);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `.push()` method returns the _length_ of the new array! Previously, the array contained one element (the string `"banana"`) and had a length of `1`. After adding the string `"apple"` to the array, the array contains two elements, and has a length of `2`. This gets returned from the `addToList` function.
 
 The `push` method modifies the original array. If you wanted to return the _array_ from the function rather than the _length of the array_, you should have returned `list` after pushing `item` to it.
@@ -6557,6 +6652,7 @@ console.log(shape);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 `Object.freeze` makes it impossible to add, remove, or modify properties of an object (unless the property's value is another object).
 
 When we create the variable `shape` and set it equal to the frozen object `box`, `shape` also refers to a frozen object. You can check whether an object is frozen by using `Object.isFrozen`. In this case, `Object.isFrozen(shape)` returns true, since the variable `shape` has a reference to a frozen object.
@@ -6586,6 +6682,7 @@ console.log(name);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 When we unpack the property `name` from the object on the right-hand side, we assign its value `"Jhone"` to a variable with the name `myName`.
 
 With `{ name: myName }`, we tell JavaScript that we want to create a new variable called `myName` with the value of the `name` property on the right-hand side.
@@ -6612,6 +6709,7 @@ function sum(a, b) {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 A pure function is a function that _always_ returns the same result, if the same arguments are passed.
 
@@ -6654,6 +6752,7 @@ console.log(addFunction(5 * 2));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `add` function is a _memoized_ function. With memoization, we can cache the results of a function in order to speed up its execution. In this case, we create a `cache` object that stores the previously returned values.
 
 If we call the `addFunction` function again with the same argument, it first checks whether it has already gotten that value in its cache. If that's the case, the caches value will be returned, which saves on execution time. Else, if it's not cached, it will calculate the value and store it afterwards.
@@ -6693,6 +6792,7 @@ for (let item of myLifeSummedUp) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With a _for-in_ loop, we can iterate over **enumerable** properties. In an array, the enumerable properties are the "keys" of array elements, which are actually their indexes. You could see an array as:
 
 `{0: "☕", 1: "💻", 2: "🍷", 3: "🍫"}`
@@ -6723,6 +6823,7 @@ console.log(list);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Array elements can hold any value. Numbers, strings, objects, other arrays, null, boolean values, undefined, and other expressions such as dates, functions, and calculations.
 
 The element will be equal to the returned value. `1 + 2` returns `3`, `1 * 2` returns `2`, and `1 / 2` returns `0.5`.
@@ -6751,6 +6852,7 @@ console.log(sayHi());
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 By default, arguments have the value of `undefined`, unless a value has been passed to the function. In this case, we didn't pass a value for the `name` argument. `name` is equal to `undefined` which gets logged.
 
@@ -6795,6 +6897,7 @@ setTimeout(() => {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The value of the `this` keyword is dependent on where you use it. In a **method**, like the `getStatus` method, the `this` keyword refers to _the object that the method belongs to_. The method belongs to the `data` object, so `this` refers to the `data` object. When we log `this.status`, the `status` property on the `data` object gets logged, which is `"🥑"`.
 
 With the `call` method, we can change the object to which the `this` keyword refers. In **functions**, the `this` keyword refers to the _the object that the function belongs to_. We declared the `setTimeout` function on the _global object_, so within the `setTimeout` function, the `this` keyword refers to the _global object_. On the global object, there is a variable called _status_ with the value of `"😎"`. When logging `this.status`, `"😎"` gets logged.
@@ -6827,6 +6930,7 @@ console.log(person);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 We set the variable `city` equal to the value of the property called `city` on the `person` object. There is no property on this object called `city`, so the variable `city` has the value of `undefined`.
 
@@ -6867,6 +6971,7 @@ console.log(checkAge(21));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Variables with the `const` and `let` keyword are _block-scoped_. A block is anything between curly brackets (`{ }`). In this case, the curly brackets of the if/else statements. You cannot reference a variable outside of the block it's declared in, a ReferenceError gets thrown.
 
 </p>
@@ -6892,6 +6997,7 @@ fetch("https://www.website.com/api/user/1")
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The value of `res` in the second `.then` is equal to the returned value of the previous `.then`. You can keep chaining `.then`s like this, where the value is passed to the next handler.
 
 </p>
@@ -6916,6 +7022,7 @@ function getName(name) {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 With `!!name`, we determine whether the value of `name` is truthy or falsy. If name is truthy, which we want to test for, `!name` returns `false`. `!false` (which is what `!!name` practically is) returns `true`.
 
@@ -6946,6 +7053,7 @@ console.log("I want pizza"[0]);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 In order to get an character on a specific index in a string, you can use bracket notation. The first character in the string has index 0, and so on. In this case we want to get the element which index is 0, the character `"I'`, which gets logged.
 
 Note that this method is not supported in IE7 and below. In that case, use `.charAt()`
@@ -6974,6 +7082,7 @@ sum(10);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 You can set a default parameter's value equal to another parameter of the function, as long as they've been defined _before_ the default parameter. We pass the value `10` to the `sum` function. If the `sum` function only receives 1 argument, it means that the value for `num2` is not passed, and the value of `num1` is equal to the passed value `10` in this case. The default value of `num2` is the value of `num1`, which is `10`. `num1 + num2` returns `20`.
 
@@ -7007,6 +7116,7 @@ console.log(data);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With the `import * as name` syntax, we import _all exports_ from the `module.js` file into the `index.js` file as a new object called `data` is created. In the `module.js` file, there are two exports: the default export, and a named export. The default export is a function which returns the string `"Hello World"`, and the named export is a variable called `name` which has the value of the string `"Jhone"`.
 
 The `data` object has a `default` property for the default export, other properties have the names of the named exports and their corresponding values.
@@ -7038,6 +7148,7 @@ console.log(typeof member);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Classes are syntactical sugar for function constructors. The equivalent of the `Person` class as a function constructor would be:
 
@@ -7072,6 +7183,7 @@ console.log(newList.push(5));
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `.push` method returns the _new length_ of the array, not the array itself! By setting `newList` equal to `[1, 2, 3].push(4)`, we set `newList` equal to the new length of the array: `4`.
 
 Then, we try to use the `.push` method on `newList`. Since `newList` is the numerical value `4`, we cannot use the `.push` method: a TypeError is thrown.
@@ -7105,6 +7217,7 @@ console.log(giveJhoneChocolate.prototype);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Regular functions, such as the `giveJhonePizza` function, have a `prototype` property, which is an object (prototype object) with a `constructor` property. Arrow functions however, such as the `giveJhoneChocolate` function, do not have this `prototype` property. `undefined` gets returned when trying to access the `prototype` property using `giveJhoneChocolate.prototype`.
 
 </p>
@@ -7134,6 +7247,7 @@ for (const [x, y] of Object.entries(person)) {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 `Object.entries(person)` returns an array of nested arrays, containing the keys and objects:
 
@@ -7168,6 +7282,7 @@ getItems(["banana", "apple"], "pear", "orange")
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 `...args` is a rest parameter. The rest parameter's value is an array containing all remaining arguments, **and can only be the last parameter**! In this example, the rest parameter was the second parameter. This is not possible, and will throw a syntax error.
 
@@ -7209,6 +7324,7 @@ console.log(nums(1, 2));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 In JavaScript, we don't _have_ to write the semicolon (`;`) explicitly, however the JavaScript engine still adds them after statements. This is called **Automatic Semicolon Insertion**. A statement can for example be variables, or keywords like `throw`, `return`, `break`, etc.
 
@@ -7255,6 +7371,7 @@ console.log(member.name);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 We can set classes equal to other classes/function constructors. In this case, we set `Person` equal to `AnotherPerson`. The name on this constructor is `Sarah`, so the name property on the new `Person` instance `member` is `"Sarah"`.
 
 </p>
@@ -7282,6 +7399,7 @@ console.log(Object.keys(info));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 A Symbol is not _enumerable_. The Object.keys method returns all _enumerable_ key properties on an object. The Symbol won't be visible, and an empty array is returned. When logging the entire object, all properties will be visible, even non-enumerable ones.
 
@@ -7314,6 +7432,7 @@ console.log(getUser(user))
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 The `getList` function receives an array as its argument. Between the parentheses of the `getList` function, we destructure this array right away. You could see this as:
 
@@ -7350,6 +7469,7 @@ console.log(name());
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The variable `name` holds the value of a string, which is not a function, thus cannot invoke.
 
 TypeErrors get thrown when a value is not of the expected type. JavaScript expected `name` to be a function since we're trying to invoke it. It was a string however, so a TypeError gets thrown: name is not a function!
@@ -7381,6 +7501,7 @@ You should${"" && `n't`} see a therapist after so much JavaScript lol`;
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 `[]` is a truthy value. With the `&&` operator, the right-hand value will be returned if the left-hand value is a truthy value. In this case, the left-hand value `[]` is a truthy value, so `"Im'` gets returned.
 
 `""` is a falsy value. If the left-hand value is falsy, nothing gets returned. `n't` doesn't get returned.
@@ -7409,6 +7530,7 @@ console.log(one, two, three);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 With the `||` operator, we can return the first truthy operand. If all values are falsy, the last operand gets returned.
 
@@ -7452,6 +7574,7 @@ secondFunction();
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With a promise, we basically say _I want to execute this function, but I'll put it aside for now while it's running since this might take a while. Only when a certain value is resolved (or rejected), and when the call stack is empty, I want to use this value._
 
 We can get this value with both `.then` and the `await` keyword in an `async` function. Although we can get a promise's value with both `.then` and `await`, they work a bit differently.
@@ -7491,6 +7614,7 @@ for (let item of set) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 The `+` operator is not only used for adding numerical values, but we can also use it to concatenate strings. Whenever the JavaScript engine sees that one or more values are not a number, it coerces the number into a string.
 
 The first one is `1`, which is a numerical value. `1 + 2` returns the number 3.
@@ -7519,6 +7643,7 @@ Promise.resolve(5);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 We can pass any type of value we want to `Promise.resolve`, either a promise or a non-promise. The method itself returns a promise with the resolved value (`<fulfilled>`). If you pass a regular function, it'll be a resolved promise with a regular value. If you pass a promise, it'll be a resolved promise with the resolved value of that passed promise.
 
@@ -7554,6 +7679,7 @@ compareMembers(person);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Objects are passed by reference. When we check objects for strict equality (`===`), we're comparing their references.
 
@@ -7594,6 +7720,7 @@ console.log(colorConfig.colors[1]);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 In JavaScript, we have two ways to access properties on an object: bracket notation, or dot notation. In this example, we use dot notation (`colorConfig.colors`) instead of bracket notation (`colorConfig["colors"]`).
 
 With dot notation, JavaScript tries to find the property on the object with that exact name. In this example, JavaScript tries to find a property called `colors` on the `colorConfig` object. There is no property called `colors`, so this returns `undefined`. Then, we try to access the value of the first element by using `[1]`. We cannot do this on a value that's `undefined`, so it throws a `TypeError`: `Cannot read property '1' of undefined`.
@@ -7618,6 +7745,7 @@ console.log("❤️" === "❤️");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Under the hood, emojis are unicodes. The unicodes for the heart emoji is `"U+2764 U+FE0F"`. These are always the same for the same emojis, so we're comparing two equal strings to each other, which returns true.
 
@@ -7649,6 +7777,7 @@ emojis.splice(1, 2, "✨");
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With `splice` method, we modify the original array by deleting, replacing or adding elements. In this case, we removed 2 items from index 1 (we removed `'🥑'` and `'😍'`) and added the ✨ emoji instead.
 
 `map`, `filter` and `slice` return a new array, `find` returns an element, and `reduce` returns a reduced value.
@@ -7679,6 +7808,7 @@ console.log(food);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 We set the value of the `favoriteFood` property on the `info` object equal to the string with the pizza emoji, `'🍕'`. A string is a primitive data type. In JavaScript, primitive data types don't interact by reference.
 
 In JavaScript, primitive data types (everything that's not an object) interact by _value_. In this case, we set the value of the `favoriteFood` property on the `info` object equal to the value of the first element in the `food` array, the string with the pizza emoji in this case (`'🍕'`). A string is a primitive data type, and interact by value (see my [blogpost](https://www.theavocoder.com/complete-javascript/2018/12/21/by-value-vs-by-reference) if you're interested in learning more)
@@ -7706,6 +7836,7 @@ JSON.parse();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 With the `JSON.parse()` method, we can parse JSON string to a JavaScript value.
 
@@ -7750,6 +7881,7 @@ getName();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Each function has its own _execution context_ (or _scope_). The `getName` function first looks within its own context (scope) to see if it contains the variable `name` we're trying to access. In this case, the `getName` function contains its own `name` variable: we declare the variable `name` with the `let` keyword, and with the value of `'Sarah'`.
 
@@ -7800,6 +7932,7 @@ console.log(two.next().value);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 With the `yield` keyword, we `yield` values in a generator function. With the `yield*` keyword, we can yield values from another generator function, or iterable object (for example an array).
 
 In `generatorOne`, we yield the entire array `['a', 'b', 'c']` using the `yield` keyword. The value of `value` property on the object returned by the `next` method on `one` (`one.next().value`) is equal to the entire array `['a', 'b', 'c']`.
@@ -7839,6 +7972,7 @@ console.log(`${((x) => x)("I love")} to program`);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 Expressions within template literals are evaluated first. This means that the string will contain the returned value of the expression, the immediately invoked function `(x => x)('I love')` in this case. We pass the value `'I love'` as an argument to the `x => x` arrow function. `x` is equal to `'I love'`, which gets returned. This results in `I love to program`.
 
 </p>
@@ -7867,6 +8001,7 @@ config = null;
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 Normally when we set objects equal to `null`, those objects get _garbage collected_ as there is no reference anymore to that object. However, since the callback function within `setInterval` is an arrow function (thus bound to the `config` object), the callback function still holds a reference to the `config` object. As long as there is a reference, the object won't get garbage collected. Since it's not garbage collected, the `setInterval` callback function will still get invoked every 1000ms (1s).
 
@@ -7900,6 +8035,7 @@ myMap.get(() => "greeting");
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 When adding a key/value pair using the `set` method, the key will be the value of the first argument passed to the `set` function, and the value will be the second argument passed to the `set` function. The key is the _function_ `() => 'greeting'` in this case, and the value `'Hello world'`. `myMap` is now `{ () => 'greeting' => 'Hello world!' }`.
 
 1 is wrong, since the key is not `'greeting'` but `() => 'greeting'`.
@@ -7937,6 +8073,7 @@ console.log(person);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 Both the `changeAge` and `changeAgeAndName` functions have a default parameter, namely a _newly_ created object `{ ...person }`. This object has copies of all the key/values in the `person` object.
 
 First, we invoke the `changeAge` function and pass the `person` object as its argument. This function increases the value of the `age` property by 1. `person` is now `{ name: "Jhone", age: 22 }`.
@@ -7981,6 +8118,7 @@ function sumValues(x, y, z) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 With the spread operator `...`, we can _spread_ iterables to individual elements. The `sumValues` function receives three arguments: `x`, `y` and `z`. `...[1, 2, 3]` will result in `1, 2, 3`, which we pass to the `sumValues` function.
@@ -8006,6 +8144,7 @@ console.log(list[(num += 1)]);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: B
 
@@ -8045,6 +8184,7 @@ console.log(member.getLastName?.());
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 With the optional chaining operator `?.`, we no longer have to explicitly check whether the deeper nested values are valid or not. If we're trying to access a property on an `undefined` or `null` value (_nullish_), the expression short-circuits and returns `undefined`.
@@ -8079,6 +8219,7 @@ if (groceries.indexOf('banana')) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 We passed the condition `groceries.indexOf("banana")` to the if-statement. `groceries.indexOf("banana")` returns `0`, which is a falsy value. Since the condition in the if-statement is falsy, the code in the `else` block runs, and `We don't have to buy bananas!` gets logged.
@@ -8109,6 +8250,7 @@ console.log(config.language);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: D
 
 The `language` method is a `setter`. Setters don't hold an actual value, their purpose is to _modify_ properties. When calling a `setter` method, `undefined` gets returned.
@@ -8134,6 +8276,7 @@ console.log(!typeof name === 'string');
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -8164,6 +8307,7 @@ add(4)(5)(6);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: A
 
@@ -8199,6 +8343,7 @@ async function* range(start, end) {
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 The generator function `range` returns an async object with promises for each item in the range we pass: `Promise{1}`, `Promise{2}`, `Promise{3}`. We set the variable `gen` equal to the async object, after which we loop over it using a `for await ... of` loop. We set the variable `item` equal to the returned Promise values: first `Promise{1}`, then `Promise{2}`, then `Promise{3}`. Since we're _awaiting_ the value of `item`, the resolved promsie, the resolved _values_ of the promises get returned: `1`, `2`, then `3`.
@@ -8225,6 +8370,7 @@ myFunc(1, 2, 3);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: D
 
@@ -8263,6 +8409,7 @@ console.log(getFine(130, 300))
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 With the `Intl.NumberFormat` method, we can format numeric values to any locale. We format the numeric value `130` to the `en-US` locale as a `unit` in `mile-per-hour`, which results in `130 mph`. The numeric value `300` to the `en-US` locale as a `currency` in `USD` results in `$300.00`.
@@ -8288,6 +8435,7 @@ console.log(spookyItems);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: B
 
@@ -8318,6 +8466,7 @@ console.log(isNaN(age));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -8350,6 +8499,7 @@ getInfo();
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: D
 
@@ -8384,6 +8534,7 @@ const myPromise = Promise.resolve('Woah some cool data');
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 In the `try` block, we're logging the awaited value of the `myPromise` variable: `"Woah some cool data"`. Since no errors were thrown in the `try` block, the code in the `catch` block doesn't run. The code in the `finally` block _always_ runs, `"Oh finally!"` gets logged.
@@ -8408,6 +8559,7 @@ console.log(emojis.flat(1));
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: B
 
@@ -8448,6 +8600,7 @@ console.log(counterOne.count);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: D
 
@@ -8496,6 +8649,7 @@ funcTwo();
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: D
 
 First, we invoke `funcOne`. On the first line of `funcOne`, we call the `myPromise` promise, which is an _asynchronous_ operation. While the engine is busy completing the promise, it keeps on running the function `funcOne`. The next line is the _asynchronous_ `setTimeout` function, from which the callback is sent to the Web API. (see my article on the event loop here.)
@@ -8532,6 +8686,7 @@ import * as sum from './sum';
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -8593,6 +8748,7 @@ person.name;
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 With a Proxy object, we can add custom behavior to an object that we pass to it as the second argument. In this case, we pass the `handler` object which contained to properties: `set` and `get`. `set` gets invoked whenever we _set_ property values, `get` gets invoked whenever we _get_ (access) property values.
@@ -8623,6 +8779,7 @@ Object.seal(person);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: A
 
@@ -8656,6 +8813,7 @@ Object.freeze(person);
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 The `Object.freeze` method _freezes_ an object. No properties can be added, modified, or removed.
@@ -8687,6 +8845,7 @@ myFunc(3);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: A
 
@@ -8727,6 +8886,7 @@ console.log(counter.#number)
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: D
 
@@ -8770,6 +8930,7 @@ obj.next(); // { value: "Lisa", done: false }
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 In order to iterate over the `members` in each element in the `teams` array, we need to pass `teams[i].members` to the `getMembers` generator function. The generator function returns a generator object. In order to iterate over each element in this generator object, we need to use `yield*`.
@@ -8808,6 +8969,7 @@ console.log(person.hobbies);
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -8853,6 +9015,7 @@ const pet = new Flamingo();
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 We create the variable `pet` which is an instance of the `Flamingo` class. When we instantiate this instance, the `constructor` on `Flamingo` gets called. First, `"I'm pink. 🌸"` gets logged, after which we call `super()`. `super()` calls the constructor of the parent class, `Bird`. The constructor in `Bird` gets called, and logs `"I'm a bird. 🦢"`.
@@ -8881,6 +9044,7 @@ const emojis = ['🎄', '🎅🏼', '🎁', '⭐'];
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: D
 
 The `const` keyword simply means we cannot _redeclare_ the value of that variable, it's _read-only_. However, the value itself isn't immutable. The properties on the `emojis` array can be modified, for example by pushing new values, splicing them, or setting the length of the array to 0.
@@ -8908,6 +9072,7 @@ const person = {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -8939,6 +9104,7 @@ console.log(count)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 The `if` condition within the `forEach` loop checks whether the value of `num` is truthy or falsy. Since the first number in the `nums` array is `0`, a falsy value, the `if` statement's code block won't be executed. `count` only gets incremented for the other 3 numbers in the `nums` array, `1`, `2` and `3`. Since `count` gets incremented by `1` 3 times, the value of `count` is `3`.
@@ -8967,6 +9133,7 @@ getFruit([['🍍'], ['🍊', '🍌']])
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: D
 
@@ -9010,6 +9177,7 @@ console.log(calc.count)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: A
 
 We set the variable `calc` equal to a new instance of the `Calc` class. Then, we instantiate a new instance of `Calc`, and invoke the `increase` method on this instance. Since the count property is within the constructor of the `Calc` class, the count property is not shared on the prototype of `Calc`. This means that the value of count has not been updated for the instance calc points to, count is still `0`.
@@ -9052,6 +9220,7 @@ console.log(updatedUser === user)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: B
 
 The `updateUser` function updates the values of the `email` and `password` properties on user, if their values are passed to the function, after which the function returns the `user` object. The returned value of the `updateUser` function is the `user` object, which means that the value of updatedUser is a reference to the same `user` object that `user` points to. `updatedUser === user` equals `true`.
@@ -9080,6 +9249,7 @@ console.log(fruit)
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -9112,6 +9282,7 @@ console.log(animals[dog])
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: B
 
@@ -9150,6 +9321,7 @@ console.log(user.email)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: A
 
 The `updateEmail` function is an arrow function, and is not bound to the `user` object. This means that the `this` keyword is not referring to the `user` object, but refers to  the global scope in this case. The value of `email` within the `user` object does not get updated. When logging the value of `user.email`, the original value of `my@email.com` gets returned. 
@@ -9186,6 +9358,7 @@ runPromises()
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: D
 
 The `Promise.all` method runs the passed promises in parallel. If one promise fails, the `Promise.all` method _rejects_ with the value of the rejected promise. In this case, `promise3` rejected with the value `"Third"`. We’re catching the rejected value in the chained `catch` method on the `runPromises` invocation to catch any errors  within the `runPromises` function. Only `"Third"` gets logged, since `promise3` rejected with this value.
@@ -9214,6 +9387,7 @@ Object[method](keys.map((_, i) => {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: C
 
@@ -9251,6 +9425,7 @@ console.log(member)
 <details><summary><b>Explanation</b></summary>
 <p>
 
+
 #### Answer: C
 
 The default value of `address` is an empty object `{}`. When we set the variable `member` equal to the object returned by the `createMember` function, we didn't pass a value for address, which means that the value of address is the default empty object `{}`. An empty object is a truthy value, which means that the condition of the `address ? address : null` conditional returns `true`. The value of address is the empty object `{}`.
@@ -9280,6 +9455,7 @@ if (!typeof randomValue === "string") {
 
 <details><summary><b>Explanation</b></summary>
 <p>
+
 
 #### Answer: B
 
@@ -9423,7 +9599,9 @@ The condition within the `if` statement checks whether the value of `!typeof ran
       <span id="min">0</span> : <span id="sec">00</span> :
       <span id="msec">000</span>
     </p>
-    <p>
+   <p>
+
+
       In this example Date() methods co-operate with timing function
       setInterval().
     </p>
