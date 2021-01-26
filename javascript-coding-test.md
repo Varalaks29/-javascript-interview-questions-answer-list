@@ -1,201 +1,5 @@
 ## Programming in JavaScript
 
-### Q. How to do Javascript file size and extension validation before upload?
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <title>Show File Data</title>
-    <script type="text/javascript">
-      function showFileSize() {
-        var input, file, extension;
-
-        // (Can't use `typeof FileReader === "function"` because apparently
-        // it comes back as "object" on some browsers. So just see if it's there
-        // at all.)
-        if (!window.FileReader) {
-          bodyAppend("p", "The file API isn't supported on this browser yet.");
-          return;
-        }
-
-        input = document.getElementById("fileinput");
-        if (!input) {
-          bodyAppend("p", "Um, couldn't find the fileinput element.");
-        } else if (!input.files) {
-          bodyAppend(
-            "p",
-            "This browser doesn't seem to support the `files` property of file inputs."
-          );
-        } else if (!input.files[0]) {
-          bodyAppend("p", "Please select a file before clicking 'Load'");
-        } else {
-          file = input.files[0];
-          extension = file.name.substring(file.name.lastIndexOf(".") + 1);
-          bodyAppend(
-            "p",
-            "File Name: " +
-              file.name +
-              "<br/>File Size: " +
-              file.size +
-              " bytes <br/>File Extension: " +
-              extension
-          );
-        }
-      }
-
-      function bodyAppend(tagName, innerHTML) {
-        var elm;
-
-        elm = document.createElement(tagName);
-        elm.innerHTML = innerHTML;
-        document.body.appendChild(elm);
-      }
-    </script>
-  </head>
-  <body>
-    <form action="#" onsubmit="return false;">
-      <input type="file" id="fileinput" />
-      <input
-        type="button"
-        id="btnLoad"
-        value="Load"
-        onclick="showFileSize();"
-      />
-    </form>
-  </body>
-</html>
-```
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. How to create captcha using javascript?
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>JavaScript Captcha Example</title>
-  </head>
-  <script>
-    var captcha;
-
-    function generateCaptcha() {
-      var a = Math.floor(Math.random() * 10);
-      var b = Math.floor(Math.random() * 10);
-      var c = Math.floor(Math.random() * 10);
-      var d = Math.floor(Math.random() * 10);
-
-      captcha = a.toString() + b.toString() + c.toString() + d.toString();
-      document.getElementById("captcha").value = captcha;
-    }
-
-    function check() {
-      var input = document.getElementById("inputText").value;
-
-      if (input == captcha) {
-        alert("Valid Captcha");
-      } else {
-        alert("Invalid Captcha");
-      }
-    }
-  </script>
-  <body onload="generateCaptcha()">
-    <input type="text" id="captcha" disabled /><br /><br />
-    <input type="text" id="inputText" /><br /><br />
-    <button onclick="generateCaptcha()">Refresh</button>
-    <button onclick="check()">Submit</button>
-  </body>
-</html>
-```
-
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
-
-### Q. Create a Stopwatch program in javascript.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Stopwatch Example</title>
-  </head>
-  <body>
-    <form action="" method="post">
-      <h4>Simple stopwatch made in JavaScript</h4>
-      <input type="button" onclick="startWatch()" value="START" />
-      <input type="button" onclick="stopWatch()" value="STOP" />
-      <input type="button" onclick="resetWatch()" value="ZERO" />
-    </form>
-    <p id="res">
-      <span id="min">0</span> : <span id="sec">00</span> :
-      <span id="msec">000</span>
-    </p>
-    <p>
-      In this example Date() methods co-operate with timing function
-      setInterval().
-    </p>
-
-    <script type="text/javascript">
-      var timer = null;
-      var min_txt = document.getElementById("min");
-      var min = Number(min_txt.innerHTML);
-      var sec_txt = document.getElementById("sec");
-      var sec = Number(sec_txt.innerHTML);
-      var msec_txt = document.getElementById("msec");
-      var msec = Number(msec_txt.innerHTML);
-      function stopTimeMilliseconds(timer) {
-        if (timer) {
-          clearInterval(timer);
-          return timer;
-        } else return timer;
-      }
-      function startTimeMilliseconds() {
-        var currDate = new Date();
-        return currDate.getTime();
-      }
-      function getElapsedTimeMilliseconds(startMilliseconds) {
-        if (startMilliseconds > 0) {
-          var currDate = new Date();
-          elapsedMilliseconds = currDate.getTime() - startMilliseconds;
-          return elapsedMilliseconds;
-        } else {
-          return (elapsedMilliseconds = 0);
-        }
-      }
-      function startWatch() {
-        // START TIMER
-        timer = stopTimeMilliseconds(timer);
-        var startMilliseconds = startTimeMilliseconds();
-        timer = setInterval(function () {
-          var elapsedMilliseconds = getElapsedTimeMilliseconds(
-            startMilliseconds
-          );
-          if (msec < 10) {
-            msec_txt.innerHTML = "00" + msec;
-          } else if (msec < 100) {
-            msec_txt.innerHTML = "0" + msec;
-          } else {
-            msec_txt.innerHTML = msec;
-          }
-          if (sec < 10) {
-            sec_txt.innerHTML = "0" + sec;
-          } else {
-            sec_txt.innerHTML = sec;
-          }
-          min_txt.innerHTML = min;
-          msec = elapsedMilliseconds;
-          if (min >= 59 && sec >= 59 && msec > 900) {
-            timer = stopTimeMilliseconds(timer);
-            return true;
-          }
-          if (sec > 59) {
-            sec = 0;
-            min++;
 ### Q. How to check if object is empty or not in javaScript?
 
 ```javascript
@@ -12832,8 +12636,211 @@ The condition within the `if` statement checks whether the value of `!typeof ran
 </p>
 </details>
 
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
 
 
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
+
+### Q. How to do Javascript file size and extension validation before upload?
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>Show File Data</title>
+    <script type="text/javascript">
+      function showFileSize() {
+        var input, file, extension;
+
+        // (Can't use `typeof FileReader === "function"` because apparently
+        // it comes back as "object" on some browsers. So just see if it's there
+        // at all.)
+        if (!window.FileReader) {
+          bodyAppend("p", "The file API isn't supported on this browser yet.");
+          return;
+        }
+
+        input = document.getElementById("fileinput");
+        if (!input) {
+          bodyAppend("p", "Um, couldn't find the fileinput element.");
+        } else if (!input.files) {
+          bodyAppend(
+            "p",
+            "This browser doesn't seem to support the `files` property of file inputs."
+          );
+        } else if (!input.files[0]) {
+          bodyAppend("p", "Please select a file before clicking 'Load'");
+        } else {
+          file = input.files[0];
+          extension = file.name.substring(file.name.lastIndexOf(".") + 1);
+          bodyAppend(
+            "p",
+            "File Name: " +
+              file.name +
+              "<br/>File Size: " +
+              file.size +
+              " bytes <br/>File Extension: " +
+              extension
+          );
+        }
+      }
+
+      function bodyAppend(tagName, innerHTML) {
+        var elm;
+
+        elm = document.createElement(tagName);
+        elm.innerHTML = innerHTML;
+        document.body.appendChild(elm);
+      }
+    </script>
+  </head>
+  <body>
+    <form action="#" onsubmit="return false;">
+      <input type="file" id="fileinput" />
+      <input
+        type="button"
+        id="btnLoad"
+        value="Load"
+        onclick="showFileSize();"
+      />
+    </form>
+  </body>
+</html>
+```
+
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
+
+### Q. How to create captcha using javascript?
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Captcha Example</title>
+  </head>
+  <script>
+    var captcha;
+
+    function generateCaptcha() {
+      var a = Math.floor(Math.random() * 10);
+      var b = Math.floor(Math.random() * 10);
+      var c = Math.floor(Math.random() * 10);
+      var d = Math.floor(Math.random() * 10);
+
+      captcha = a.toString() + b.toString() + c.toString() + d.toString();
+      document.getElementById("captcha").value = captcha;
+    }
+
+    function check() {
+      var input = document.getElementById("inputText").value;
+
+      if (input == captcha) {
+        alert("Valid Captcha");
+      } else {
+        alert("Invalid Captcha");
+      }
+    }
+  </script>
+  <body onload="generateCaptcha()">
+    <input type="text" id="captcha" disabled /><br /><br />
+    <input type="text" id="inputText" /><br /><br />
+    <button onclick="generateCaptcha()">Refresh</button>
+    <button onclick="check()">Submit</button>
+  </body>
+</html>
+```
+
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
+
+### Q. Create a Stopwatch program in javascript.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stopwatch Example</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      <h4>Simple stopwatch made in JavaScript</h4>
+      <input type="button" onclick="startWatch()" value="START" />
+      <input type="button" onclick="stopWatch()" value="STOP" />
+      <input type="button" onclick="resetWatch()" value="ZERO" />
+    </form>
+    <p id="res">
+      <span id="min">0</span> : <span id="sec">00</span> :
+      <span id="msec">000</span>
+    </p>
+    <p>
+      In this example Date() methods co-operate with timing function
+      setInterval().
+    </p>
+
+    <script type="text/javascript">
+      var timer = null;
+      var min_txt = document.getElementById("min");
+      var min = Number(min_txt.innerHTML);
+      var sec_txt = document.getElementById("sec");
+      var sec = Number(sec_txt.innerHTML);
+      var msec_txt = document.getElementById("msec");
+      var msec = Number(msec_txt.innerHTML);
+      function stopTimeMilliseconds(timer) {
+        if (timer) {
+          clearInterval(timer);
+          return timer;
+        } else return timer;
+      }
+      function startTimeMilliseconds() {
+        var currDate = new Date();
+        return currDate.getTime();
+      }
+      function getElapsedTimeMilliseconds(startMilliseconds) {
+        if (startMilliseconds > 0) {
+          var currDate = new Date();
+          elapsedMilliseconds = currDate.getTime() - startMilliseconds;
+          return elapsedMilliseconds;
+        } else {
+          return (elapsedMilliseconds = 0);
+        }
+      }
+      function startWatch() {
+        // START TIMER
+        timer = stopTimeMilliseconds(timer);
+        var startMilliseconds = startTimeMilliseconds();
+        timer = setInterval(function () {
+          var elapsedMilliseconds = getElapsedTimeMilliseconds(
+            startMilliseconds
+          );
+          if (msec < 10) {
+            msec_txt.innerHTML = "00" + msec;
+          } else if (msec < 100) {
+            msec_txt.innerHTML = "0" + msec;
+          } else {
+            msec_txt.innerHTML = msec;
+          }
+          if (sec < 10) {
+            sec_txt.innerHTML = "0" + sec;
+          } else {
+            sec_txt.innerHTML = sec;
+          }
+          min_txt.innerHTML = min;
+          msec = elapsedMilliseconds;
+          if (min >= 59 && sec >= 59 && msec > 900) {
+            timer = stopTimeMilliseconds(timer);
+            return true;
+          }
+          if (sec > 59) {
+            sec = 0;
+            min++;
           }
           if (msec > 999) {
             msec = 0;
