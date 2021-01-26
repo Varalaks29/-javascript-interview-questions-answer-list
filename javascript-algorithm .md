@@ -19,9 +19,7 @@ Output
 peedarP
 ```
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
 ### Q2. Write a program in javascript. sum(2)(3); // Expected output is 5
 
@@ -45,9 +43,7 @@ Output
 Outputs 5
 ```
 
-<div align="right">
-    <b><a href="#">↥ back to top</a></b>
-</div>
+---
 
 
       
