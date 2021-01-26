@@ -1,19 +1,57 @@
-<div class="container">
-    <h3>Q1. Write a program to reverse a string?</h3>
-    <div class="highlightCode">
-      <pre> 
-        function reverseString(str) {
-            let stringRev = "";
-            for (let i = str.length; i >= 0; i--) {
-                stringRev = stringRev + str.charAt(i);
-            }
-            return stringRev;
-        }
-    </p>
-    <p>Output</p>
-    <pre>
-      console.log(reverseString("Pradeep")); // Output: peedarP
-    </pre>
+## Programming in JavaScript
+
+### Q1. Write a program to reverse a string?
+
+```javascript
+function reverseString(str) {
+  let stringRev = "";
+  for (let i = str.length; i >= 0; i--) {
+    stringRev = stringRev + str.charAt(i);
+  }
+  return stringRev;
+}
+console.log(reverseString("Pradeep"));
+```
+
+Output
+
+```
+peedarP
+```
+
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
+
+### Q2. Write a program in javascript. sum(2)(3); // Expected output is 5
+
+```javascript
+function sum(x, y) {
+  if (y !== undefined) {
+    return x + y;
+  } else {
+    return function (y) {
+      return x + y;
+    };
+  }
+}
+console.log(sum(2,3));
+console.log(sum(2)(3));
+```
+
+Output
+
+```
+Outputs 5
+```
+
+<div align="right">
+    <b><a href="#">↥ back to top</a></b>
+</div>
+
+
+      
+    
 
 
 
