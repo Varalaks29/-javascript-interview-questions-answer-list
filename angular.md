@@ -1,8 +1,9 @@
-<div class="container">
-  <h1>Angular Interview Questions & Answer Lists</h1>
-  <h2> Tabel of Contents</h2>
-  <ul>
-    <li><a href="/javascript">JavaScript Interview Questions & Answer Lists</a></li>
-    <li><a href="/angular">Angular Interview Questions & Answer Lists</a></li>
-  </ul>
-</div>
+# Angular Interview Questions & Answers Lists
+
+## Table of Contents
+
+* *[Interview Questions and Answers](angular-question-answer.md)*
+* *[Coding Test in Angular](angular-coding-test.md)*
+* *[Programming in Angular](angular-algorithm.md)*
+
+<br/>
